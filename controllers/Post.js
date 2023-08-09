@@ -6,7 +6,6 @@ export const createPost = async (req, res) => {
   const userId = req.user.id;
   const file = req.file;
   const urlPath = file.path;
-  console.log(file);
 
   try {
     //create new post
@@ -90,7 +89,6 @@ export const getOtherUserPost = async (req, res) => {
 
   try {
     const allPost = await Post.find({ user_id: userId }).populate("comments").populate("likes");
-    console.log(allPost);
     res.status(200).json({ message: "Success", data: allPost });
   } catch (error) {
     res.status(500).json({ message: "An error ocured", error: error.message });
